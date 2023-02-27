@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.0/css/mdui.min.css">
+    <style>
+        .app-icon {
+            border-radius: 0%;
+            important;
+        }
+    </style>
+    <title>Download Client | Miaowo</title>
+</head>
+<body>
+    <div class="mdui-container-fluid">
+        <div class="mdui-row mdui-row-gapless">
+            <div class="mdui-col-md-6 mdui-col-offset-md-3">
+                <div class="mdui-color-teal mdui-appbar">
+                    <div class="mdui-toolbar mdui-color-theme">
+                        <i class="mdui-icon material-icons">file_download</i>
+                        <a class="mdui-typo-title">Download Client</a>
+                        <div class="mdui-toolbar-spacer"></div>
+                        <a href="https://www.miaowo.org" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: 'Return to the main site'}"><i class="mdui-icon material-icons">exit_to_app</i></a>
+                    </div>
+                    <div class="mdui-tab mdui-color-theme" mdui-tab>
+                        <a href="#android-app" class="mdui-ripple mdui-ripple-white">
+                            <i class="mdui-icon material-icons">android</i>
+                            <label>Android</label>
+                        </a>
+                        <a href="#web" class="mdui-ripple mdui-ripple-white">
+                            <i class="mdui-icon material-icons">web</i>
+                            <label>Web</label>
+                        </a>
+                    </div>
+                </div>
+                <div class="mdui-card mdui-m-t-1" id="android-app">
+
+                    <!-- The head of the card, which contains the avatar, title, and subtitle -->
+                    <div class="mdui-card-header">
+                        <img class="app-icon mdui-card-header-avatar" src="https://github.com/luiqn2007/miaowo/raw/master/app/src/main/res/mipmap-hdpi/cat_ghost.png" />
+                        <div class="mdui-card-header-title">Marakeng App</div>
+                        <div class="mdui-card-header-subtitle">For Android 4.0.3 or newer devices</div>
+                    </div>
+
+                    <!-- The title and subtitle of the card -->
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-subtitle">permit: Apache 2.0</div>
+                        <div class="mdui-card-primary-subtitle">version: <span id="android-app-version"></span> | <span id="android-app-version-name"></span></div>
+                    </div>
+
+                    <!-- The content of the card -->
+                    <div class="mdui-card-content" id=android-app-message>Loading......</div>
+
+                    <!-- The button for the card -->
+                    <div class="mdui-card-actions">
+                        <button class="mdui-btn mdui-color-theme-accent" id="menu" mdui-menu="{target: '#android-download-menu', position: 'top'}"><i class="mdui-icon-left mdui-icon material-icons">cloud_download</i>Download the installation package</button>
+
+                        <ul class="mdui-menu mdui-menu-cascade" id="android-download-menu">
+                            <li class="mdui-menu-item">
+                                <a href="https://gitee.com/lq2007/miaowo/raw/master/app/release/app-release.apk" class="mdui-ripple">Download from OSC (faster in Chinese mainland)</a>
+                            </li>
+                            <li class="mdui-menu-item">
+                                <a href="https://raw.githubusercontent.com/luiqn2007/miaowo/master/app/release/app-release.apk" class="mdui-ripple">Download from GitHub</a>
+                            </li>
+                        </ul>
+
+                        <a href="https://www.miaowo.org/topic/187" class="mdui-btn mdui-ripple"><i class="mdui-icon-left mdui-icon material-icons">library_books</i>Review the changelog</a>
+                        <button class="mdui-btn mdui-color-theme-accent" id="menu" mdui-menu="{target: '#android-source-code-menu', position: 'top'}"><i class="mdui-icon-left mdui-icon material-icons">code</i>View the source code</button>
+
+                        <ul class="mdui-menu mdui-menu-cascade" id="android-source-code-menu">
+                            <li class="mdui-menu-item">
+                                <a href="https://gitee.com/lq2007/miaowo" class="mdui-ripple">View in OSC</a>
+                            </li>
+                            <li class="mdui-menu-item">
+                                <a href="https://github.com/luiqn2007/miaowo" class="mdui-ripple">Check it out on GitHub</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mdui-card mdui-m-t-1" id="web">
+                    <div class="mdui-card">
+                        <div class="mdui-card-content">
+                            Firefox supports all the security, performance features you need to use Meow Nest~
+                        </div>
+                        <div class="mdui-card-actions">
+                            <a href="https://www.mozilla.org/" class="mdui-btn mdui-ripple">
+                                <i class="mdui-icon-left mdui-icon material-icons">cloud_download</i>
+                                Get Firefox
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.0/js/mdui.min.js"></script>
+    <script>
+        var $$ = mdui.JQ;
+        $$.ajax({
+            method: 'GET',
+            url: 'https://raw.githubusercontent.com/luiqn2007/miaowo/master/app/version',
+            success: function (data) {
+                json = JSON.parse(data);
+                document.getElementById("android-app-version").innerHTML = json.version;
+                document.getElementById("android-app-version-name").innerHTML = json.versionName;
+                document.getElementById("android-app-message").innerHTML = json.message;
+            }
+        });
+    </script>
+</body>
+</html>
